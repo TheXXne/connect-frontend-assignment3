@@ -16,6 +16,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@thirdweb-dev/sdk": "^4.0.1",
     "axios": "^1.4.0",
     "babel-plugin-module-resolver": "^5.0.0",
     "i": "^0.3.7",
