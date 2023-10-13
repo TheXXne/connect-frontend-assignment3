@@ -1,0 +1,67 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "amd": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 9, // or 2017
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "17.0.2"
+    },
+    "import/parser": {
+      "typescript-eslint-parser": [ ".ts", ".tsx" ]
+    },
+    "import/resolver": {
+      "eslint-import-resolver-typescript": true,
+      "babel-module": {},
+      "node": {
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
+      }
+    }
+  },
+  "rules": {
+    "react/display-name": 0,
+    "react/prop-types": 0,
+    "no-console": "off",
+    "no-unused-vars": 0,
+    "indent": "off",
+    "no-undef": "warn",
+    "no-mixed-spaces-and-tabs": "error",
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "key-spacing": ["error", { "beforeColon": false }],
+    "space-infix-ops": "error",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true
+      }
+    ]
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:prettier/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
+  ],
+  "globals": {
+    "closet": true,
+    "JSX": "readonly",
+    "NodeJS": true
+  }
+}
