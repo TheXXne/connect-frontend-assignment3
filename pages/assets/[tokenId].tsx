@@ -1,7 +1,7 @@
 import axios from 'axios';
 import styled from '@emotion/styled';
-import AssetInfo from '../../src/components/AssetInfo';
-import ImageDesc from '../../src/components/ImageDesc';
+import AssetInfo from '../../src/components/detail/AssetInfo';
+import ImageDesc from '../../src/components/detail/ImageDesc';
 
 const Asset = ({ asset }: any) => {
   return (
