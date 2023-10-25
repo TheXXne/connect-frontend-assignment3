@@ -1,24 +1,24 @@
 import axios from 'axios';
-import Image from 'next/image';
+import styled from '@emotion/styled';
+import AssetInfo from '../../src/components/AssetInfo';
+import ImageDesc from '../../src/components/ImageDesc';
 
 const Asset = ({ asset }: any) => {
   return (
-    <div>
-      <h4>{asset.metadata.name}</h4>
-      <Image src={asset.metadata.image} alt="Asset" width="163.75" height="165.75" />
-    </div>
+    <Detail>
+      <ImageDesc img={asset.metadata.image} />
+      <AssetInfo name={asset.metadata.name} />
+    </Detail>
   );
 };
 
 export const getServerSideProps = async (context: any) => {
   const { tokenId } = context.query;
-  console.log('tokenId :: ', tokenId);
   const response = await axios.get('http://localhost:3000/api/assets', {
     params: {
       tokenId: tokenId,
     },
   });
-  console.log('asset :: ', response.data.asset);
 
   return {
     props: {
@@ -28,3 +28,18 @@ export const getServerSideProps = async (context: any) => {
 };
 
 export default Asset;
+
+const Detail = styled.div`
+  margin: 36px 0;
+  padding: 0 32px;
+  align-items: flex-start;
+  max-width: 100%;
+  vertical-align: inherit;
+  min-height: 0;
+  min-width: 0;
+  flex-shrink: 0;
+  flex-direction: column;
+  flex-basis: auto;
+  display: flex;
+  flex-flow: row;
+`;
