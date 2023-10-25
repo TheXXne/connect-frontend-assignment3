@@ -1,12 +1,18 @@
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import Description from '../../src/components/Description';
+import Description from './Description';
+import ImageSkeleton from './ImageSkeleton';
 
 export default function ImageDesc(props: any) {
   return (
     <ImageDescWrap>
       <AssetImg>
-        <Image src={props.img} alt="img" width="520" height="520" />
+        {/*redux 사용해, props.img 대신 isLoding 변수 활용*/}
+        {props.img ? (
+          <Image src={props.img} alt="img" width="520" height="520" />
+        ) : (
+          <ImageSkeleton />
+        )}
       </AssetImg>
       <Description />
     </ImageDescWrap>

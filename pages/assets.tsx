@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import axios from 'axios';
-import Header from '../src/components/Header';
+import Header from '../src/components/assets/Header';
 import { NFT } from '@thirdweb-dev/sdk';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
