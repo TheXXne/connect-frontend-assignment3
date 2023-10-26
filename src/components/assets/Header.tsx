@@ -1,5 +1,5 @@
-import SearchBox from 'src/components/assets/SearchBox';
-import GridBox from 'src/components/assets/GridBox';
+import SearchBox from './SearchBox';
+import GridBox from './GridBox';
 
 export default function Header() {
   return (

@@ -5,10 +5,10 @@ import ImageDesc from '../../src/components/detail/ImageDesc';
 
 const Asset = ({ asset }: any) => {
   return (
-    <Detail>
+    <DetailWarp>
       <ImageDesc img={asset.metadata.image} />
       <AssetInfo name={asset.metadata.name} />
-    </Detail>
+    </DetailWarp>
   );
 };
 
@@ -29,7 +29,7 @@ export const getServerSideProps = async (context: any) => {
 
 export default Asset;
 
-const Detail = styled.div`
+const DetailWarp = styled.div`
   margin: 36px 0;
   padding: 0 32px;
   align-items: flex-start;

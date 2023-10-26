@@ -2,40 +2,20 @@ import type { NextPage } from 'next';
 import axios from 'axios';
 import Header from '../src/components/assets/Header';
 import { NFT } from '@thirdweb-dev/sdk';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import styled from '@emotion/styled';
+import AssetCard from '../src/components/assets/AssetCard';
 
 const Assets: NextPage = ({ assets }: any) => {
-  const router = useRouter();
   return (
     <div>
       <Header />
-      <div>
+      <ListingWarp>
         <div>
           {assets.map((asset: any) => (
-            <div
-              className="asset-card"
-              key={asset.id}
-              onClick={() => {
-                router.push(
-                  {
-                    pathname: '/assets/[tokenId]',
-                    query: {
-                      tokenId: asset.metadata.id,
-                    },
-                  },
-                  '',
-                );
-              }}
-            >
-              <Image src={asset.metadata.image} alt="Asset" width="163.75" height="165.75" />
-              <div>
-                <h4>{asset.metadata.name}</h4>
-              </div>
-            </div>
+            <AssetCard asset={asset} key={asset.id} />
           ))}
         </div>
-      </div>
+      </ListingWarp>
     </div>
   );
 };
@@ -52,3 +32,18 @@ export const getServerSideProps = async () => {
 };
 
 export default Assets;
+
+const ListingWarp = styled.div`
+  margin: 36px 0;
+  padding: 0 32px;
+  align-items: flex-start;
+  max-width: 100%;
+  vertical-align: inherit;
+  min-height: 0;
+  min-width: 0;
+  flex-shrink: 0;
+  flex-direction: column;
+  flex-basis: auto;
+  display: flex;
+  flex-flow: row;
+`;
