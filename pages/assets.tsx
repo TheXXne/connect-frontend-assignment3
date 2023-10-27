@@ -10,11 +10,12 @@ const Assets: NextPage = ({ assets }: any) => {
     <div>
       <Header />
       <ListingWarp>
-        <div>
+        <div></div>
+        <AssetCards>
           {assets.map((asset: any) => (
             <AssetCard asset={asset} key={asset.id} />
           ))}
-        </div>
+        </AssetCards>
       </ListingWarp>
     </div>
   );
@@ -34,16 +35,23 @@ export const getServerSideProps = async () => {
 export default Assets;
 
 const ListingWarp = styled.div`
-  margin: 36px 0;
-  padding: 0 32px;
-  align-items: flex-start;
-  max-width: 100%;
+  margin: 0 24px;
+  flex-flow: row;
+  -webkit-box-flex: 1;
+  flex: 1 0 auto;
   vertical-align: inherit;
+  max-width: 100%;
   min-height: 0;
   min-width: 0;
-  flex-shrink: 0;
   flex-direction: column;
-  flex-basis: auto;
   display: flex;
-  flex-flow: row;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+`;
+
+const AssetCards = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
 `;

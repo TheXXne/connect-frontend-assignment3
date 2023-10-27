@@ -1,49 +1,37 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from '@emotion/styled';
 import { ContextIcon } from '@closet-design-system/core-connect';
-import { useRouter } from 'next/router';
 
 export default function AssetCard(props: any) {
-  const router = useRouter();
   return (
     <AssetCardWarp>
-      <AssetCardA
-        onClick={() => {
-          router.push(
-            {
-              pathname: '/assets/[tokenId]',
-              query: {
-                tokenId: props.asset.id,
-              },
-            },
-            '',
-          );
-        }}
-      >
-        <AssetImg>
-          <Image src={props.asset.metadata.image} alt="Asset" width="163.75" height="163.75" />
-        </AssetImg>
-        <AssetInfo>
-          <ContextIconWarp>
-            <ContextIconDiv>
-              <ContextIcon color="rgba(22, 22, 26, 0.6)" size="20px" />
-            </ContextIconDiv>
-          </ContextIconWarp>
-          <div>
-            <AssetName>{props.asset.metadata.name}</AssetName>
-          </div>
-          <div>
-            <AssetPrice>Price 1.234 ETH</AssetPrice>
-          </div>
-        </AssetInfo>
-      </AssetCardA>
+      <Link href={`/assets/${props.asset.metadata.id}`}>
+        <AssetCardDiv>
+          <AssetImg>
+            <Image src={props.asset.metadata.image} alt="Asset" width="163.75" height="163.75" />
+          </AssetImg>
+          <AssetInfo>
+            <ContextIconWarp>
+              <ContextIconDiv>
+                <ContextIcon color="rgba(22, 22, 26, 0.6)" size="20px" />
+              </ContextIconDiv>
+            </ContextIconWarp>
+            <div>
+              <AssetName>{props.asset.metadata.name}</AssetName>
+            </div>
+            <div>
+              <AssetPrice>Price 1.234 ETH</AssetPrice>
+            </div>
+          </AssetInfo>
+        </AssetCardDiv>
+      </Link>
     </AssetCardWarp>
   );
 }
 
 const AssetCardWarp = styled.div`
   -webkit-box-flex: 1;
-  flex-grow: 1;
   height: 100%;
   padding: 8px;
   background: transparent;
@@ -51,7 +39,8 @@ const AssetCardWarp = styled.div`
   border-radius: 16px;
 `;
 
-const AssetCardA = styled.a`
+const AssetCardDiv = styled.div`
+  cursor: pointer;
   transition: all 0.15s ease-in-out 0s;
   will-change: transform;
 `;
@@ -98,6 +87,7 @@ const ContextIconWarp = styled.button`
   width: 32px;
   height: 32px;
   background: transparent;
+  border: 1px solid white;
   border-radius: 12px;
   color: rgba(22, 22, 26, 0.6);
 `;
