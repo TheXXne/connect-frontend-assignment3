@@ -6,35 +6,37 @@ import { useRouter } from 'next/router';
 export default function AssetCard(props: any) {
   const router = useRouter();
   return (
-    <AssetCardWarp
-      onClick={() => {
-        router.push(
-          {
-            pathname: '/assets/[tokenId]',
-            query: {
-              tokenId: props.asset.id,
+    <AssetCardWarp>
+      <AssetCardA
+        onClick={() => {
+          router.push(
+            {
+              pathname: '/assets/[tokenId]',
+              query: {
+                tokenId: props.asset.id,
+              },
             },
-          },
-          '',
-        );
-      }}
-    >
-      <AssetImg>
-        <Image src={props.asset.metadata.image} alt="Asset" width="163.75" height="163.75" />
-      </AssetImg>
-      <AssetInfo>
-        <ContextIconWarp>
-          <ContextIconDiv>
-            <ContextIcon color="rgba(22, 22, 26, 0.6)" size="20px" />
-          </ContextIconDiv>
-        </ContextIconWarp>
-        <div>
-          <AssetName>{props.asset.metadata.name}</AssetName>
-        </div>
-        <div>
-          <AssetPrice>Price 1.234 ETH</AssetPrice>
-        </div>
-      </AssetInfo>
+            '',
+          );
+        }}
+      >
+        <AssetImg>
+          <Image src={props.asset.metadata.image} alt="Asset" width="163.75" height="163.75" />
+        </AssetImg>
+        <AssetInfo>
+          <ContextIconWarp>
+            <ContextIconDiv>
+              <ContextIcon color="rgba(22, 22, 26, 0.6)" size="20px" />
+            </ContextIconDiv>
+          </ContextIconWarp>
+          <div>
+            <AssetName>{props.asset.metadata.name}</AssetName>
+          </div>
+          <div>
+            <AssetPrice>Price 1.234 ETH</AssetPrice>
+          </div>
+        </AssetInfo>
+      </AssetCardA>
     </AssetCardWarp>
   );
 }
@@ -47,6 +49,11 @@ const AssetCardWarp = styled.div`
   background: transparent;
   border: 1px solid rgba(22, 22, 26, 0.08);
   border-radius: 16px;
+`;
+
+const AssetCardA = styled.a`
+  transition: all 0.15s ease-in-out 0s;
+  will-change: transform;
 `;
 
 const AssetImg = styled.div`
