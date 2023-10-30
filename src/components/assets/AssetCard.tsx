@@ -4,13 +4,14 @@ import styled from '@emotion/styled';
 import { ContextIcon } from '@closet-design-system/core-connect';
 
 export default function AssetCard(props: any) {
+  const { id, image, name } = props.asset.metadata;
   return (
     <AssetCardWarp>
-      <Link href={`/assets/${props.asset.metadata.id}`}>
+      <Link href={`/assets/${id}`}>
         <AssetCardDiv>
           <AssetImg>
             <ImageWrap>
-              <Image src={props.asset.metadata.image} alt="Asset" width="163.75" height="163.75" />
+              <Image src={image} alt="Asset" width="163.75" height="163.75" />
             </ImageWrap>
             <HoverWrap>
               <HoverOuter>
@@ -28,7 +29,7 @@ export default function AssetCard(props: any) {
               </ContextIconDiv>
             </ContextIconWarp>
             <div>
-              <AssetName>{props.asset.metadata.name}</AssetName>
+              <AssetName>{name}</AssetName>
             </div>
             <div>
               <AssetPrice>Price 1.234 ETH</AssetPrice>
@@ -41,7 +42,6 @@ export default function AssetCard(props: any) {
 }
 
 const AssetCardWarp = styled.div`
-  -webkit-box-flex: 1;
   height: 100%;
   padding: 8px;
   background: transparent;
@@ -78,8 +78,8 @@ const AssetImg = styled.div`
 `;
 
 const ImageWrap = styled.div`
-  width: 163.75px;
-  height: 163.75px;
+  width: 163px;
+  height: 163px;
 `;
 
 const HoverWrap = styled.div`
@@ -118,9 +118,7 @@ const ButNowIcon = styled.button`
   color: rgb(255, 255, 255);
   background-color: rgb(22, 22, 26);
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   flex-flow: row;
   position: relative;
@@ -143,9 +141,7 @@ const AddIcon = styled.button`
   color: rgb(255, 255, 255);
   background-color: rgb(22, 22, 26);
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   flex-flow: row;
   position: relative;
@@ -178,7 +174,6 @@ const AssetName = styled.span`
   font-size: 15px;
   line-height: 22px;
   font-weight: 700;
-  -webkit-box-flex: 1;
   flex-grow: 1;
   max-width: 80%;
   padding: 0 4px;
@@ -202,9 +197,7 @@ const ContextIconWarp = styled.button`
 
 const ContextIconDiv = styled.div`
   display: inline-flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   transition: all 0.15s ease-in-out 0s;
   height: 100%;

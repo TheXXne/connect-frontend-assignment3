@@ -30,7 +30,6 @@ const DescWrap = styled.div`
   flex-direction: column;
   flex-basis: auto;
   display: flex;
-  -webkit-box-align: stretch;
   align-items: stretch;
   padding-left: 20px;
   padding-right: 20px;

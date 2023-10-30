@@ -37,7 +37,6 @@ export default Assets;
 const ListingWarp = styled.div`
   margin: 0 24px;
   flex-flow: row;
-  -webkit-box-flex: 1;
   flex: 1 0 auto;
   vertical-align: inherit;
   max-width: 100%;
@@ -45,7 +44,6 @@ const ListingWarp = styled.div`
   min-width: 0;
   flex-direction: column;
   display: flex;
-  -webkit-box-align: stretch;
   align-items: stretch;
 `;
 

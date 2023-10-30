@@ -28,13 +28,11 @@ const SearchBoxWrap = styled.div`
 `;
 
 const SearchBoxOuter = styled.form`
-  -webkit-box-flex: 1;
   flex-grow: 1;
 `;
 
 const SearchBoxInner = styled.div`
   position: relative;
-  -webkit-box-pack: center;
   justify-content: center;
   background: rgba(22, 22, 26, 0.04);
   backdrop-filter: blur(40px);
@@ -48,11 +46,8 @@ const SearchBoxInner = styled.div`
 `;
 
 const BoxDiv = styled.div`
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-flex: 1;
   flex-grow: 1;
   display: inline-block;
   position: relative;
@@ -69,7 +64,6 @@ const IconWrap = styled.div`
 `;
 
 const InputDiv = styled.div`
-  -webkit-box-flex: 1;
   flex-grow: 1;
   flex-shrink: 1;
   padding: 0 30px;
