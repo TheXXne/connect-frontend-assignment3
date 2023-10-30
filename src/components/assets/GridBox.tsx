@@ -57,7 +57,6 @@ const GridBoxInner = styled.div`
 const IconWrap = styled.div`
   height: 36px;
   flex-flow: row;
-  -webkit-box-align: stretch;
   align-items: stretch;
   width: fit-content;
   position: relative;
