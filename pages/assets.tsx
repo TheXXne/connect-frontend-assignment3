@@ -1,11 +1,23 @@
 import type { NextPage } from 'next';
 import axios from 'axios';
-import Header from '../src/components/assets/Header';
 import { NFT } from '@thirdweb-dev/sdk';
 import styled from '@emotion/styled';
+import Header from '../src/components/assets/Header';
 import AssetCard from '../src/components/assets/AssetCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { assetsActions } from '../src/feature/assets/assetsSlice';
 
-const Assets: NextPage = ({ assets }: any) => {
+const Assets: NextPage = () => {
+  const dispatch = useDispatch();
+  const assets = useSelector(state => state);
+
+  useEffect(() => {
+    if (assets === 0) {
+      dispatch(assetsActions.setAssets);
+    }
+  }, [dispatch, assets]);
+
   return (
     <div>
       <Header />

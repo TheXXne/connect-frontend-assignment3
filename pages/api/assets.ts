@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+import { NFT, ThirdwebSDK } from '@thirdweb-dev/sdk';
+import { AxiosError } from 'axios';
 
 const NETWORK: string = 'ethereum';
 const AZUKI_SMARTCONTRACT_ADDRESS: string = '0xED5AF388653567Af2F388E6224dC7C4b3241C544';
-const CLO_CERTI_SMARTCONTRACT_ADDRESS: string = '0x0669E8C36635fce3f26cE510713ccA769ecF8B88';
+const SDK = new ThirdwebSDK(NETWORK);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const sdk = new ThirdwebSDK(NETWORK);
-  const contract = await sdk.getContract(AZUKI_SMARTCONTRACT_ADDRESS);
+  const contract = await SDK.getContract(AZUKI_SMARTCONTRACT_ADDRESS);
   if (req.method === 'GET') {
     if (req.query.tokenId) {
       const tokenId: number = Number(req.query.tokenId);
@@ -22,4 +22,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     res.status(500).json({ message: 'wrong connection' });
   }
+};
+
+export const getAllAssets = async (): Promise<{ assets: NFT[] } | { error: AxiosError }> => {
+  const contract = await SDK.getContract(AZUKI_SMARTCONTRACT_ADDRESS);
+  return contract.erc721
+    .getAll()
+    .then(res => ({ assets: res }))
+    .catch(error => ({ error: error }));
+};
+
+export const getAssetMetadata = async (tokenId: string) => {
+  const contract = await SDK.getContract(AZUKI_SMARTCONTRACT_ADDRESS);
+  await contract.erc721
+    .get(tokenId)
+    .then(res => ({
+      assets: res,
+    }))
+    .catch(error => ({ error }));
 };
