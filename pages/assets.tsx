@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import axios from 'axios';
-import Header from '../src/components/assets/Header';
 import { NFT } from '@thirdweb-dev/sdk';
 import styled from '@emotion/styled';
+import Header from '../src/components/assets/Header';
 import AssetCard from '../src/components/assets/AssetCard';
 
 const Assets: NextPage = ({ assets }: any) => {
