@@ -1,18 +1,21 @@
 import * as api from '../../../pages/api/assets';
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { assetsActions } from './assetsSlice';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { fetchDataStart, fetchDataSuccess, fetchDataFailure } from './assetsSlice';
 
-function* fetchAssets() {
+function* fetchData() {
   try {
-    const assets = yield call(api.getAllAssets);
-    yield put(assetsActions.setAssets(assets));
+    const response = yield call(api.getAllAssets);
+    const assets = yield response.assets;
+    yield put(fetchDataSuccess(assets));
   } catch (error) {
-    console.log('fetchItems - error : ', error);
+    yield put(fetchDataFailure(error.message));
   }
 }
 
-function* assetsSaga() {
-  yield takeLatest('assets/fetchAssets', fetchAssets);
+function* watchFetchData() {
+  yield takeLatest(fetchDataStart, fetchData);
 }
 
-export default assetsSaga;
+export default function* assetsSaga() {
+  yield all([watchFetchData()]);
+}

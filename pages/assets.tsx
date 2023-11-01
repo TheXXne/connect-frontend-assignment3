@@ -1,11 +1,19 @@
 import type { NextPage } from 'next';
-import axios from 'axios';
 import Header from '../src/components/assets/Header';
-import { NFT } from '@thirdweb-dev/sdk';
 import styled from '@emotion/styled';
 import AssetCard from '../src/components/assets/AssetCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchDataStart } from '../src/feature/assets/assetsSlice';
 
-const Assets: NextPage = ({ assets }: any) => {
+const Assets: NextPage = () => {
+  const dispatch = useDispatch();
+  const { assets, loading, error } = useSelector(state => state.assets);
+
+  useEffect(() => {
+    dispatch(fetchDataStart());
+  }, [dispatch]);
+
   return (
     <div>
       <Header />
@@ -19,17 +27,6 @@ const Assets: NextPage = ({ assets }: any) => {
       </ListingWarp>
     </div>
   );
-};
-
-export const getServerSideProps = async () => {
-  const response = await axios.get('http://localhost:3000/api/assets');
-  const assets: NFT[] = response.data.assets;
-
-  return {
-    props: {
-      assets: assets,
-    },
-  };
 };
 
 export default Assets;
