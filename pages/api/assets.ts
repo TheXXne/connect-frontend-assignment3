@@ -38,7 +38,7 @@ export const getMetadata = async (tokenId: number) => {
   await contract.erc721
     .get(tokenId)
     .then(res => ({
-      assets: res,
+      metadata: res,
     }))
     .catch(error => ({ error: error }));
 };

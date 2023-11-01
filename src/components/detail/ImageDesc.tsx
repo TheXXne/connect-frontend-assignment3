@@ -8,11 +8,7 @@ export default function ImageDesc(props: any) {
     <ImageDescWrap>
       <AssetImg>
         {/*redux 사용해, props.img 대신 isLoding 변수 활용*/}
-        {props.img ? (
-          <Image src={props.img} alt="img" width="520" height="520" />
-        ) : (
-          <ImageSkeleton />
-        )}
+        {true ? <Image src={props.img} alt="img" width="520" height="520" /> : <ImageSkeleton />}
       </AssetImg>
       <Description />
     </ImageDescWrap>
