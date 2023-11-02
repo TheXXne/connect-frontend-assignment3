@@ -14,7 +14,6 @@ export default function AssetCard(props: any) {
 
   return (
     <AssetCardWarp>
-      {!isImageLoaded && <AssetCardSkeleton />}
       <Link href={`/assets/${id}`}>
         <AssetCardDiv>
           <AssetImg>
@@ -37,6 +36,7 @@ export default function AssetCard(props: any) {
               </HoverOuter>
             </HoverWrap>
           </AssetImg>
+          {!isImageLoaded && <AssetImgSkeleton />}
           <AssetInfo>
             <ContextIconWarp>
               <ContextIconDiv>
@@ -45,9 +45,11 @@ export default function AssetCard(props: any) {
             </ContextIconWarp>
             <div>
               <AssetName>{name}</AssetName>
+              {!isImageLoaded && <AssetNameSkeleton />}
             </div>
             <div>
               <AssetPrice>Price 1.234 ETH</AssetPrice>
+              {!isImageLoaded && <AssetPriceSkeleton />}
             </div>
           </AssetInfo>
         </AssetCardDiv>
