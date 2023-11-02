@@ -2,16 +2,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { ContextIcon } from '@closet-design-system/core-connect';
+import AssetCardSkeleton from './AssetCardSkeleton';
+import { useState } from 'react';
 
 export default function AssetCard(props: any) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
+  };
   const { id, image, name } = props.asset.metadata;
+
   return (
     <AssetCardWarp>
       <Link href={`/assets/${id}`}>
         <AssetCardDiv>
           <AssetImg>
             <ImageWrap>
-              <Image src={image} alt="Asset" width="163.75" height="163.75" />
+              <Image
+                src={image}
+                alt="Asset"
+                width="163.75"
+                height="163.75"
+                onLoad={handleImageLoad}
+                style={{ display: isImageLoaded ? 'block' : 'none' }}
+              />
             </ImageWrap>
             <HoverWrap>
               <HoverOuter>
@@ -22,6 +36,7 @@ export default function AssetCard(props: any) {
               </HoverOuter>
             </HoverWrap>
           </AssetImg>
+          {!isImageLoaded && <AssetImgSkeleton />}
           <AssetInfo>
             <ContextIconWarp>
               <ContextIconDiv>
@@ -30,9 +45,11 @@ export default function AssetCard(props: any) {
             </ContextIconWarp>
             <div>
               <AssetName>{name}</AssetName>
+              {!isImageLoaded && <AssetNameSkeleton />}
             </div>
             <div>
               <AssetPrice>Price 1.234 ETH</AssetPrice>
+              {!isImageLoaded && <AssetPriceSkeleton />}
             </div>
           </AssetInfo>
         </AssetCardDiv>
@@ -73,6 +90,13 @@ const AssetImg = styled.div`
   backface-visibility: hidden;
   transform: translate3d(0px, 0px, 0px);
   opacity: 1;
+  border-radius: 14px;
+  border: 1px solid white;
+`;
+
+const AssetImgSkeleton = styled.div`
+  margin-bottom: 10px;
+  background: rgba(22, 22, 26, 0.04);
   border-radius: 14px;
   border: 1px solid white;
 `;
@@ -212,4 +236,19 @@ const AssetPrice = styled.span`
   padding: 0 4px 4px;
   margin-top: 4px;
   color: rgba(22, 22, 26, 0.6);
+`;
+
+const AssetNameSkeleton = styled.div`
+  background: rgba(22, 22, 26, 0.04);
+  border-radius: 14px;
+  width: 35%;
+  padding: 8px;
+`;
+
+const AssetPriceSkeleton = styled.div`
+  background: rgba(22, 22, 26, 0.04);
+  border-radius: 14px;
+  width: 55%;
+  padding: 8px;
+  margin-top: 4px;
 `;

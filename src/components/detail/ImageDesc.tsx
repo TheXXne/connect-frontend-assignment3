@@ -2,19 +2,29 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import Description from './Description';
 import ImageSkeleton from './ImageSkeleton';
+import { useState } from 'react';
+import DescriptionSkeleton from './DescriptionSkeleton';
+import Skeleton from 'react-loading-skeleton';
 
 export default function ImageDesc(props: any) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
+  };
   return (
     <ImageDescWrap>
       <AssetImg>
-        {/*redux 사용해, props.img 대신 isLoding 변수 활용*/}
-        {props.img ? (
-          <Image src={props.img} alt="img" width="520" height="520" />
-        ) : (
-          <ImageSkeleton />
-        )}
+        <Image
+          src={props.img}
+          alt="img"
+          width="520"
+          height="520"
+          onLoad={handleImageLoad}
+          style={{ display: isImageLoaded ? 'block' : 'none' }}
+        />
+        {!isImageLoaded && <Skeleton height={520} width={520} />}
       </AssetImg>
-      <Description />
+      {!isImageLoaded ? <DescriptionSkeleton /> : <Description />}
     </ImageDescWrap>
   );
 }

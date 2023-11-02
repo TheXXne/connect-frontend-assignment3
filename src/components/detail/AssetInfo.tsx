@@ -7,11 +7,13 @@ export default function AssetInfo(props) {
       <CollectionInfo>
         <CollectionSymbol />
         <Collection>Azuki</Collection>
+        {/*<CollectionSkeleton />*/}
         <YellowCheck>
           <Image src="/yellow check.png" alt="Logo" width="16" height="16" />
         </YellowCheck>
       </CollectionInfo>
       <AssetName>{props.name}</AssetName>
+      {/*<AssetNameSkeleton />*/}
       <Royalties>Royalties</Royalties>
       <Border />
     </AssetInfoWrap>
@@ -62,6 +64,13 @@ const Collection = styled.span`
   color: rgb(22, 22, 26);
 `;
 
+const CollectionSkeleton = styled.div`
+  margin-right: 8px;
+  border-radius: 14px;
+  padding: 0 40px;
+  background: rgba(22, 22, 26, 0.04);
+`;
+
 const YellowCheck = styled.div`
   padding-top: 4px;
 `;
@@ -73,6 +82,15 @@ const AssetName = styled.span`
   font-weight: 700;
   font-size: 32px;
   margin-bottom: 8px;
+`;
+
+const AssetNameSkeleton = styled.div`
+  margin-bottom: 8px;
+  margin-right: 8px;
+  border-radius: 14px;
+  width: 40%;
+  padding: 20px 0;
+  background: rgba(22, 22, 26, 0.04);
 `;
 
 const Royalties = styled.span`

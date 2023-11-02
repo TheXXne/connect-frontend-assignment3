@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import AssetInfo from '../../src/components/detail/AssetInfo';
 import ImageDesc from '../../src/components/detail/ImageDesc';
 
-const Asset = ({ asset }: any) => {
+const Asset = ({ image, name }: any) => {
   return (
     <DetailWarp>
-      <ImageDesc img={asset.metadata.image} />
-      <AssetInfo name={asset.metadata.name} />
+      <ImageDesc img={image} />
+      <AssetInfo name={name} />
     </DetailWarp>
   );
 };
@@ -19,10 +19,12 @@ export const getServerSideProps = async (context: any) => {
       tokenId: tokenId,
     },
   });
+  const metadata = response.data.asset.metadata;
 
   return {
     props: {
-      asset: response.data.asset,
+      image: metadata.image,
+      name: metadata.name,
     },
   };
 };

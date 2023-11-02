@@ -12,6 +12,7 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@closet-design-system/core-connect": "^0.13.0",
+    "@closet-design-system/core-plm": "^0.17.0",
     "@closet-design-system/theme-connect": "^0.2.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -24,6 +25,7 @@
     "npm": "^9.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-loading-skeleton": "^3.3.1",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
     "redux-saga": "^1.2.3"
