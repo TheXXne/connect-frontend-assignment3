@@ -2,14 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { ContextIcon } from '@closet-design-system/core-connect';
-import AssetCardSkeleton from './AssetCardSkeleton';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function AssetCard(props: any) {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
-  };
+  // Skeleton test를 위한 임시 코드
+  // const [isImageLoaded, setIsImageLoaded] = useState(false);
+  // const handleImageLoad = () => {
+  //   setIsImageLoaded(true);
+  // };
+  const { grid, error } = useSelector(state => state.grid);
   const { id, image, name } = props.asset.metadata;
 
   return (
@@ -21,10 +23,11 @@ export default function AssetCard(props: any) {
               <Image
                 src={image}
                 alt="Asset"
-                width="163.75"
-                height="163.75"
-                onLoad={handleImageLoad}
-                style={{ display: isImageLoaded ? 'block' : 'none' }}
+                width={grid.width}
+                height={grid.height}
+                // Skeleton test를 위한 임시 코드
+                // onLoad={handleImageLoad}
+                // style={{ display: isImageLoaded ? 'block' : 'none' }}
               />
             </ImageWrap>
             <HoverWrap>
@@ -36,7 +39,7 @@ export default function AssetCard(props: any) {
               </HoverOuter>
             </HoverWrap>
           </AssetImg>
-          {!isImageLoaded && <AssetImgSkeleton />}
+          {/*{!isImageLoaded && <AssetImgSkeleton />}*/}
           <AssetInfo>
             <ContextIconWarp>
               <ContextIconDiv>
@@ -45,11 +48,11 @@ export default function AssetCard(props: any) {
             </ContextIconWarp>
             <div>
               <AssetName>{name}</AssetName>
-              {!isImageLoaded && <AssetNameSkeleton />}
+              {/*{!isImageLoaded && <AssetNameSkeleton />}*/}
             </div>
             <div>
               <AssetPrice>Price 1.234 ETH</AssetPrice>
-              {!isImageLoaded && <AssetPriceSkeleton />}
+              {/*{!isImageLoaded && <AssetPriceSkeleton />}*/}
             </div>
           </AssetInfo>
         </AssetCardDiv>
