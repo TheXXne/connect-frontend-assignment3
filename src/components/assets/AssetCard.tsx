@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { ContextIcon } from '@closet-design-system/core-connect';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { selectGrid } from '../../feature/grid/gridSlice';
 
 export default function AssetCard(props: any) {
   // Skeleton test를 위한 임시 코드
@@ -11,7 +12,7 @@ export default function AssetCard(props: any) {
   // const handleImageLoad = () => {
   //   setIsImageLoaded(true);
   // };
-  const { grid, error } = useSelector(state => state.grid);
+  const grid = useSelector(selectGrid);
   const { id, image, name } = props.asset.metadata;
 
   return (
