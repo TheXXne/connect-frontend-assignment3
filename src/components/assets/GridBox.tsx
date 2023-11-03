@@ -1,7 +1,19 @@
 import { CardSizeMIcon, CardSizeSIcon } from '@closet-design-system/core-plm';
 import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
+import { gridActions } from '../../feature/grid/gridSlice';
 
 export default function GridBox() {
+  const dispatch = useDispatch();
+
+  const mToggleHandler = () => {
+    dispatch(gridActions.switchToMidSize());
+  };
+
+  const sToggleHandler = () => {
+    dispatch(gridActions.switchToMidSize());
+  };
+
   return (
     <GridBoxWrap>
       <GridBoxOuter>
