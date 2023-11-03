@@ -1,7 +1,15 @@
 import { SearchIcon } from '@closet-design-system/core-connect';
 import styled from '@emotion/styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchActions, selectKeyword } from '../../feature/search/searchSlice';
 
 export default function SearchBox() {
+  const dispatch = useDispatch();
+  const keyword = useSelector(selectKeyword);
+  const handleSearch = e => {
+    dispatch(searchActions.setSearchKeyword(e.target.value));
+  };
+
   return (
     <SearchBoxWrap>
       <SearchBoxOuter>
@@ -11,7 +19,7 @@ export default function SearchBox() {
               <SearchIcon color="rgba(22, 22, 26, 0.6)" size={'13.4px'} />
             </IconWrap>
             <InputDiv>
-              <Input placeholder="Search for NFTs" />
+              <Input placeholder="Search for NFTs" value={keyword} onChange={handleSearch} />
             </InputDiv>
           </BoxDiv>
         </SearchBoxInner>

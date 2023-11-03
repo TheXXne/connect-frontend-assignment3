@@ -16,7 +16,7 @@ const gridSlice = createSlice({
       state.grid.width = '273';
       state.grid.height = '273';
     },
-    switchToSmallSize(state, action) {
+    switchToSmallSize(state) {
       state.grid.width = '163.75';
       state.grid.height = '163.75';
     },
@@ -26,6 +26,7 @@ const gridSlice = createSlice({
   },
 });
 
+export const selectGrid = state => state.grid.grid;
 export const gridActions = gridSlice.actions;
 
 export default gridSlice.reducer;

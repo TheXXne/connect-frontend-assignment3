@@ -24,6 +24,7 @@ const assetsSlice = createSlice({
     },
   },
 });
+export const selectAssets = state => state.assets.assets;
 
 export const { fetchDataStart, fetchDataSuccess, fetchDataFailure } = assetsSlice.actions;
 
